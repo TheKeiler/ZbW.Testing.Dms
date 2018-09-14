@@ -1,4 +1,9 @@
-﻿namespace ZbW.Testing.Dms.Client.ViewModels
+﻿using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+using ZbW.Testing.Dms.Client.Model;
+
+namespace ZbW.Testing.Dms.Client.ViewModels
 {
     using System;
     using System.Collections.Generic;
@@ -10,7 +15,7 @@
 
     using ZbW.Testing.Dms.Client.Repositories;
 
-    internal class DocumentDetailViewModel : BindableBase
+    public class DocumentDetailViewModel : BindableBase
     {
         private readonly Action _navigateBack;
 
@@ -32,6 +37,8 @@
 
         private DateTime? _valutaDatum;
 
+        private FileRepository _fileRepository;
+
         public DocumentDetailViewModel(string benutzer, Action navigateBack)
         {
             _navigateBack = navigateBack;
@@ -41,6 +48,7 @@
 
             CmdDurchsuchen = new DelegateCommand(OnCmdDurchsuchen);
             CmdSpeichern = new DelegateCommand(OnCmdSpeichern);
+            _fileRepository = new FileRepository(this);
         }
 
         public string Stichwoerter
@@ -121,6 +129,13 @@
             }
         }
 
+        public string FilePath
+        {
+            get { return _filePath; }
+            set { SetProperty(ref _filePath, value); }
+        }
+
+
         public DelegateCommand CmdDurchsuchen { get; }
 
         public DelegateCommand CmdSpeichern { get; }
@@ -165,8 +180,8 @@
         private void OnCmdSpeichern()
         {
             // TODO: Add your Code here
-
-            _navigateBack();
+            var metadataItem = new MetadataItem(this);
+            this._fileRepository.AddFile(metadataItem, metadataItem._isRemoveFileEnabled);           
         }
     }
 }

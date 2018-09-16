@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZbW.Testing.Dms.Client.Services
 {
-    class FileNameGenerator
+    public class FileNameGenerator
     {
 
         public FileNameGenerator()

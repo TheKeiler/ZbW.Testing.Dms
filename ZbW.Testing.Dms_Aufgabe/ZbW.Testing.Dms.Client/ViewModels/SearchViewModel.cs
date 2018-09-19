@@ -20,6 +20,8 @@
 
         private List<string> _typItems;
 
+        private FileRepository _fileRepository;
+
         public SearchViewModel()
         {
             TypItems = ComboBoxItems.Typ;
@@ -27,6 +29,8 @@
             CmdSuchen = new DelegateCommand(OnCmdSuchen);
             CmdReset = new DelegateCommand(OnCmdReset);
             CmdOeffnen = new DelegateCommand(OnCmdOeffnen, OnCanCmdOeffnen);
+            _fileRepository=new FileRepository();
+            _filteredMetadataItems = _fileRepository.EveryMetadataItemInRepository;
         }
 
         public DelegateCommand CmdOeffnen { get; }

@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Linq;
+using System.IO;
 using System.Xml.Schema;
+using System.Xml.Serialization;
 using ZbW.Testing.Dms.Client.Services;
 using ZbW.Testing.Dms.Client.ViewModels;
 
 namespace ZbW.Testing.Dms.Client.Model
 {
-    public class MetadataItem : System.Xml.Serialization.IXmlSerializable
+    
+    public class MetadataItem 
     {
         // Falls aus dem XML gelesen wird
         public MetadataItem()
@@ -56,34 +56,17 @@ namespace ZbW.Testing.Dms.Client.Model
             return (null);
         }
 
-        public void ReadXml(XmlReader reader)
+        public MetadataItem ReadXml(string streamFile)
         {
-            _guid = reader.ReadElementContentAsString(_guid, "");
-            _benutzer = reader.ReadElementContentAsString(_benutzer, "");
-            _bezeichnung = reader.ReadElementContentAsString(_bezeichnung, "");
-            reader.ReadToFollowing("_erfassungsdatum");
-            DateTime erfassungsDatum = reader.ReadElementContentAsDateTime();
-            _erfassungsdatum = erfassungsDatum;
-            _filePath = reader.ReadElementContentAsString(_filePath, "");
-            _isRemoveFileEnabled = reader.ReadElementContentAsBoolean(_bezeichnung, "");
-            _stichwoerter = reader.ReadElementContentAsString(_stichwoerter, "");
-            _selectedTypItem = reader.ReadElementContentAsString(_selectedTypItem, "");
-            reader.ReadToFollowing("_valutaDatum");
-            DateTime valutaDatum = reader.ReadElementContentAsDateTime();
-            _valutaDatum = valutaDatum;
+            var xml_Serializer = new XmlSerializer(typeof(MetadataItem));
+            var streamReader = new StreamReader(streamFile);
+            var metadataItem = (MetadataItem)xml_Serializer.Deserialize(streamReader);
+            if (metadataItem == null)
+            {
+                throw new Exception("Das hat nicht geklappt..");
+            }
+            return metadataItem;
         }
 
-        public void WriteXml(XmlWriter writer)
-        {
-            writer.WriteElementString("_guid" ,this._guid);
-            writer.WriteElementString("_benutzer",this._benutzer);
-            writer.WriteElementString("_bezeichnung",this._bezeichnung);
-            writer.WriteElementString("_erfassungsdatum",this._erfassungsdatum.ToString());
-            writer.WriteElementString("_filepath",this._filePath);
-            writer.WriteElementString("_isRemoveFileEnabled",_isRemoveFileEnabled.ToString());
-            writer.WriteElementString("_stichwoerter",this._stichwoerter);
-            writer.WriteElementString("_selectedTypeItem",this._selectedTypItem.ToString());
-            writer.WriteElementString("_valutaDatum",this._valutaDatum.ToString());
-        }
     }
 }

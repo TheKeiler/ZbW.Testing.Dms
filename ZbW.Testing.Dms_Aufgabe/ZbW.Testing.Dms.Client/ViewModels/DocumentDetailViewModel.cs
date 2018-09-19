@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Xml;
-using System.Xml.Linq;
+﻿using System.Windows;
 using ZbW.Testing.Dms.Client.Model;
 
 namespace ZbW.Testing.Dms.Client.ViewModels
@@ -45,10 +43,9 @@ namespace ZbW.Testing.Dms.Client.ViewModels
             Benutzer = benutzer;
             Erfassungsdatum = DateTime.Now;
             TypItems = ComboBoxItems.Typ;
-
             CmdDurchsuchen = new DelegateCommand(OnCmdDurchsuchen);
             CmdSpeichern = new DelegateCommand(OnCmdSpeichern);
-            _fileRepository = new FileRepository(this);
+            _fileRepository = new FileRepository();
         }
 
         public string Stichwoerter
@@ -181,7 +178,8 @@ namespace ZbW.Testing.Dms.Client.ViewModels
         {
             // TODO: Add your Code here
             var metadataItem = new MetadataItem(this);
-            this._fileRepository.AddFile(metadataItem, metadataItem._isRemoveFileEnabled);           
+            this._fileRepository.AddFile(metadataItem, metadataItem._isRemoveFileEnabled);
+            MessageBox.Show("Speichern erfolgreich. Bitte nächstes Element einlesen.");
         }
     }
 }

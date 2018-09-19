@@ -39,12 +39,12 @@
         <DataGrid Grid.Row="1"
                   ItemsSource="{Binding FilteredMetadataItems}"
                   SelectedItem="{Binding SelectedMetadataItem}"
-                  AutoGenerateColumns="True">
-            <!--TODO: Remove AutoGenerateColumns="True" and specify your own columns -->
-            <!--<DataGrid.Columns>
+                  >
+            <DataGrid.Columns>
                 <DataGridTextColumn Header="Typ" Binding="{Binding Typ}"/>
-                <DataGridTextColumn Header="Bezeichnung" Binding="{Binding Bezeichnung}"/>
-            </DataGrid.Columns>-->
+                <DataGridTextColumn Header="Bezeichnung" Binding="{Binding _bezeichnung}"/>
+                <DataGridTextColumn Header="Benutzer" Binding="{Binding _benutzer}"/>
+            </DataGrid.Columns>
         </DataGrid>
 
         <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Öffnen" Width="100"/>

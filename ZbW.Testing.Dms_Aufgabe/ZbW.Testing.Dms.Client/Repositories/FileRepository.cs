@@ -47,8 +47,9 @@ namespace ZbW.Testing.Dms.Client.Model
                 {
                     Directory.CreateDirectory(targetDir);
                 }
+            }
 
-                var streamWriter = new StreamWriter(Path.Combine(targetDir, returnFileNameMetadata));
+            var streamWriter = new StreamWriter(Path.Combine(targetDir, returnFileNameMetadata));
                 xmlSerializer.Serialize(streamWriter, metadataItem);
                 streamWriter.Flush();
                 streamWriter.Close();
@@ -75,7 +76,7 @@ namespace ZbW.Testing.Dms.Client.Model
                         MessageBox.Show(e.Message);
                     }
                 }
-            }
+            
         }
 
         public void loadMetadataFiles()

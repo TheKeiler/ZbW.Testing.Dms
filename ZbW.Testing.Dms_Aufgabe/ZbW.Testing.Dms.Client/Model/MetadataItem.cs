@@ -30,7 +30,6 @@ namespace ZbW.Testing.Dms.Client.Model
             this._valutaDatum = model.ValutaDatum;
 
         }
-        // TODO: Write your Metadata properties here
 
         public string _guid { get; set; }
 

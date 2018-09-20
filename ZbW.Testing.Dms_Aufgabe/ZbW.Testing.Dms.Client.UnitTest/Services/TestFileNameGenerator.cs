@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using FakeItEasy;
+﻿using NUnit.Framework;
 using ZbW.Testing.Dms.Client.Services;
 
 namespace ZbW.Testing.Dms.Client.UnitTest.Services
 {
+    [TestFixture]
     class TestFileNameGenerator
     {
         [Test]

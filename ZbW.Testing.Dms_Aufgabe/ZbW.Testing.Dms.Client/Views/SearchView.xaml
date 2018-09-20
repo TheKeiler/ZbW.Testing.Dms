@@ -47,6 +47,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Öffnen" Width="100"/>
+        <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Öffnen" Width="100" Command="{Binding CmdOeffnen}"/>
     </Grid>
 </UserControl>

@@ -33,17 +33,17 @@
                 Command="{Binding CmdDurchsuchen}"/>
 
         <TextBlock Grid.Row="1" Grid.Column="0"
-                   Text="Bezeichnung"/>
+                   Text="Bezeichnung*"/>
         <TextBox Grid.Row="1" Grid.Column="1"
                  Text="{Binding Bezeichnung}"/>
 
         <TextBlock Grid.Row="2" Grid.Column="0"
-                   Text="Valuta Datum"/>
+                   Text="Valuta Datum*"/>
         <DatePicker Grid.Row="2" Grid.Column="1"
                     SelectedDate="{Binding ValutaDatum}"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0"
-                   Text="Typ"/>
+                   Text="Typ*"/>
         <ComboBox Grid.Row="3" Grid.Column="1"
                   ItemsSource="{Binding TypItems}"
                   SelectedItem="{Binding SelectedTypItem}"/>

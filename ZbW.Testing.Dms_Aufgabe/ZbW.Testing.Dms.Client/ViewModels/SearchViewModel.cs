@@ -1,4 +1,7 @@
-﻿namespace ZbW.Testing.Dms.Client.ViewModels
+﻿using System.IO;
+using System.Windows.Controls;
+
+namespace ZbW.Testing.Dms.Client.ViewModels
 {
     using System.Collections.Generic;
 
@@ -114,7 +117,9 @@
 
         private void OnCmdOeffnen()
         {
-            // TODO: Add your Code here
+            if(OnCanCmdOeffnen())
+
+            _fileRepository.OpenSelectedPDF(_selectedMetadataItem);
         }
 
         private void OnCmdSuchen()

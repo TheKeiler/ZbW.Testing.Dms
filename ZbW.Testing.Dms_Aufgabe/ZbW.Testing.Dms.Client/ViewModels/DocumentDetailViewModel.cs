@@ -176,10 +176,19 @@ namespace ZbW.Testing.Dms.Client.ViewModels
 
         private void OnCmdSpeichern()
         {
-            // TODO: Add your Code here
+            
             var metadataItem = new MetadataItem(this);
-            this._fileRepository.AddFile(metadataItem, metadataItem._isRemoveFileEnabled);
-            MessageBox.Show("Speichern erfolgreich. Bitte nächstes Element einlesen.");
+            if (metadataItem._bezeichnung == null || metadataItem._valutaDatum == null ||
+                metadataItem._selectedTypItem == null)
+            {
+                MessageBox.Show("Füllen Sie bitte die Pflichtfelder * aus.");
+            }
+            else
+            {
+                this._fileRepository.AddFile(metadataItem, metadataItem._isRemoveFileEnabled);
+                MessageBox.Show("Speichern erfolgreich. Bitte nächstes Element einlesen.");
+            }
+            
         }
     }
 }

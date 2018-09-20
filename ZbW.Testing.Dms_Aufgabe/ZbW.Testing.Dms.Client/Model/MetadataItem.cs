@@ -50,11 +50,6 @@ namespace ZbW.Testing.Dms.Client.Model
         public DateTime? _valutaDatum { get; set; }
 
 
-        public XmlSchema GetSchema()
-        {
-            return (null);
-        }
-
         public MetadataItem ReadXml(string streamFile)
         {
             var xml_Serializer = new XmlSerializer(typeof(MetadataItem));
@@ -65,6 +60,15 @@ namespace ZbW.Testing.Dms.Client.Model
                 throw new Exception("Das hat nicht geklappt..");
             }
             return metadataItem;
+        }
+
+        public void WriteXml(string targetDir, string returnFileNameMetadata, MetadataItem metadataItem)
+        {
+            var xmlSerializer = new XmlSerializer(typeof(MetadataItem));
+            var streamWriter = new StreamWriter(Path.Combine(targetDir, returnFileNameMetadata));
+            xmlSerializer.Serialize(streamWriter, metadataItem);
+            streamWriter.Flush();
+            streamWriter.Close();
         }
 
     }

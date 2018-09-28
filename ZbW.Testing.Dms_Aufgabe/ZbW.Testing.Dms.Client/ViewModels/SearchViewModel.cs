@@ -1,5 +1,7 @@
 ﻿using System.IO;
+using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Win32;
 
 namespace ZbW.Testing.Dms.Client.ViewModels
 {
@@ -119,17 +121,28 @@ namespace ZbW.Testing.Dms.Client.ViewModels
         {
             if(OnCanCmdOeffnen())
 
-            _fileRepository.OpenSelectedPDF(_selectedMetadataItem);
+            _fileRepository.OpenSelectedPDF(SelectedMetadataItem);
         }
 
         private void OnCmdSuchen()
         {
             // TODO: Add your Code here
+            if (string.IsNullOrEmpty(_selectedTypItem) && string.IsNullOrEmpty(_suchbegriff))
+            {
+                MessageBox.Show("Bitte wählen Sie einen Dokumententyp oder schreiben Sie einen Suchbegriff.");
+            }
+            else
+            {
+                _fileRepository.SearchFiles(SelectedTypItem, Suchbegriff);
+                FilteredMetadataItems = _fileRepository.FilteredMetadataItems;
+            }
         }
 
         private void OnCmdReset()
         {
-            // TODO: Add your Code here
+            _fileRepository.LoadMetadataFiles();
+            FilteredMetadataItems = _fileRepository.EveryMetadataItemInRepository;
+            SelectedTypItem = null;
         }
     }
 }

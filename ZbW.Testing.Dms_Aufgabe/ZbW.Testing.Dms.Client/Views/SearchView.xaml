@@ -33,11 +33,11 @@
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Typ"/>
             <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding TypItems}" SelectedItem="{Binding SelectedTypItem}"/>
 
-            <Button Grid.Row="0" Grid.Column="5" Content="Suchen"/>
-            <Button Grid.Row="1" Grid.Column="5" Content="Reset"/>
+            <Button Grid.Row="0" Grid.Column="5" Content="Suchen" Command="{Binding CmdSuchen}"/>
+            <Button Grid.Row="1" Grid.Column="5" Content="Reset" Command="{Binding CmdReset}"/>
         </Grid>
         <DataGrid Grid.Row="1"
-                  ItemsSource="{Binding FilteredMetadataItems}"
+                  ItemsSource="{Binding FilteredMetadataItems, UpdateSourceTrigger=PropertyChanged}"
                   SelectedItem="{Binding SelectedMetadataItem}"
                   >
             <DataGrid.Columns>

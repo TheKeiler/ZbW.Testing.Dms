@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -49,20 +50,18 @@ namespace ZbW.Testing.Dms.Client.Model
 
         public DateTime? _valutaDatum { get; set; }
 
-
-        public MetadataItem ReadXml(string streamFile)
+        [ExcludeFromCodeCoverage]
+        public virtual MetadataItem ReadXml(string streamFile)
         {
             var xml_Serializer = new XmlSerializer(typeof(MetadataItem));
             var streamReader = new StreamReader(streamFile);
             var metadataItem = (MetadataItem)xml_Serializer.Deserialize(streamReader);
-            if (metadataItem == null)
-            {
-                throw new Exception("Das hat nicht geklappt..");
-            }
+            
             return metadataItem;
         }
 
-        public void WriteXml(string targetDir, string returnFileNameMetadata, MetadataItem metadataItem)
+        [ExcludeFromCodeCoverage]
+        public virtual void WriteXml(string targetDir, string returnFileNameMetadata, MetadataItem metadataItem)
         {
             var xmlSerializer = new XmlSerializer(typeof(MetadataItem));
             var streamWriter = new StreamWriter(Path.Combine(targetDir, returnFileNameMetadata));

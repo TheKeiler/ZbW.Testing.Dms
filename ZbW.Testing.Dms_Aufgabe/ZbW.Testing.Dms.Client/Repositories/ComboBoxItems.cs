@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    internal class ComboBoxItems
+    public class ComboBoxItems
     {
         public static List<string> Typ =>
             new List<string>

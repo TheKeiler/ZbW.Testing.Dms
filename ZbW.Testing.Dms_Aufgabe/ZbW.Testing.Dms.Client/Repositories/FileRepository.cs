@@ -9,7 +9,7 @@ using ZbW.Testing.Dms.Client.Services;
 
 namespace ZbW.Testing.Dms.Client.Model
 {
-    internal class FileRepository
+    public class FileRepository
     {
         private AppSettingService _appSettingService;
         private List<MetadataItem> _exeryMetadataItemInRepository = new List<MetadataItem>();
@@ -28,7 +28,7 @@ namespace ZbW.Testing.Dms.Client.Model
         public List<MetadataItem> EveryMetadataItemInRepository { get; set; }
         public List<MetadataItem> FilteredMetadataItems { get; set; }
 
-        public void AddFile(MetadataItem metadataItem, bool deleteFile)
+        public virtual void AddFile(MetadataItem metadataItem, bool deleteFile)
         {
             var repositoryDir = new AppSettingService().ReturnRepositoryDir();
             var year = metadataItem._valutaDatum.Value.Year;
